@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="t.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✖️⭕</text></svg>">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Tic-Tac-Toe</h1>
+
+        <div class="score-board" aria-live="polite">
+            <span id="player-x-score" class="score-x">X: 0</span>
+            <span id="draws-score" class="score-draw">Draws: 0</span>
+            <span id="player-o-score" class="score-o">O: 0</span>
+        </div>
+
+        <div class="controls">
+            <button id="mode-toggle" aria-label="Toggle game mode: Player versus Player or Player versus AI">Player vs Player</button>
+            <button id="theme-toggle" aria-label="Toggle dark mode on or off">Dark Mode</button>
+            <button id="reset-game" aria-label="Reset game scores and clear the board">Reset Game</button>
+        </div>
+
+        <div id="status-message" role="status" aria-live="polite">Player X's Turn</div>
+
+        <div class="game-grid" id="game-grid" role="grid" aria-label="Tic-Tac-Toe Game Board">
+            </div>
+
+        <button id="play-again" class="hidden" aria-label="Play another round">Play Again</button>
+    </div>
+
+    <script src="st.js"></script>
+</body>
+</html>

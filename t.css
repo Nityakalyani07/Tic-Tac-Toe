@@ -1,0 +1,359 @@
+/* --- CSS Custom Properties (Variables) for Theming --- */
+:root {
+    /* Light Mode */
+    --bg-color-light: #f4f7f6;
+    --text-color-light: #333;
+    --container-bg-light: #ffffff;
+    --border-color-light: #ddd;
+    --cell-bg-light: #f0f0f0;
+    --cell-hover-light: #e0e0e0;
+    --button-bg-light: #007bff;
+    --button-text-light: #fff;
+    --button-hover-light: #0056b3;
+    --status-color-light: #555;
+    --win-highlight-light: #90ee90; /* Light green */
+    --x-color-light: #e74c3c; /* Alizarin Red */
+    --o-color-light: #3498db; /* Peter River Blue */
+    --score-x-color-light: #c0392b;
+    --score-o-color-light: #2980b9;
+    --score-draw-color-light: #7f8c8d;
+}
+
+body.dark-mode {
+    /* Dark Mode */
+    --bg-color: #2c3e50; /* Dark blue-grey */
+    --text-color: #ecf0f1; /* Light grey */
+    --container-bg: #34495e; /* Slightly darker blue-grey */
+    --border-color: #555;
+    --cell-bg: #4a627a;
+    --cell-hover: #5a7490;
+    --button-bg: #1abc9c; /* Turquoise */
+    --button-text: #fff;
+    --button-hover: #16a085; /* Darker turquoise */
+    --status-color: #bdc3c7; /* Silver */
+    --win-highlight: #2ecc71; /* Emerald green */
+    --x-color: #e74c3c; /* Alizarin Red */
+    --o-color: #3498db; /* Peter River Blue */
+    --score-x-color: #e74c3c;
+    --score-o-color: #3498db;
+    --score-draw-color: #95a5a6;
+}
+
+/* --- Base Styles --- */
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--bg-color-light);
+    color: var(--text-color-light);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    padding: 20px; /* Add some padding for smaller screens */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Dark mode active styles */
+body.dark-mode {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.game-container {
+    background-color: var(--container-bg-light);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px; /* Max width for desktop */
+    transition: background-color 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body.dark-mode .game-container {
+    background-color: var(--container-bg);
+}
+
+h1 {
+    color: var(--text-color-light);
+    margin-bottom: 25px;
+    font-size: 2.2em;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode h1 {
+    color: var(--text-color);
+}
+
+/* --- Score Board Styling --- */
+.score-board {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 1.1em;
+    font-weight: bold;
+    padding: 10px 0;
+    border-radius: 8px;
+    background-color: rgba(0, 0, 0, 0.05); /* Slight background for distinction */
+    transition: background-color 0.3s ease;
+}
+
+body.dark-mode .score-board {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.score-x { color: var(--score-x-color-light); }
+.score-o { color: var(--score-o-color-light); }
+.score-draw { color: var(--score-draw-color-light); }
+
+body.dark-mode .score-x { color: var(--score-x-color); }
+body.dark-mode .score-o { color: var(--score-o-color); }
+body.dark-mode .score-draw { color: var(--score-draw-color); }
+
+
+/* --- Controls and Buttons --- */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+    width: 100%; /* Ensure controls take full width of container */
+}
+
+.controls button, #play-again {
+    background-color: var(--button-bg-light);
+    color: var(--button-text-light);
+    border: none;
+    padding: 12px 18px; /* Slightly larger padding for better touch targets */
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600; /* Bolder text */
+    transition: background-color 0.3s ease, transform 0.1s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* More pronounced shadow */
+    flex-grow: 1; /* Allow buttons to grow */
+    min-width: 120px; /* Minimum width for buttons */
+}
+
+body.dark-mode .controls button, body.dark-mode #play-again {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+}
+
+.controls button:hover, #play-again:hover {
+    background-color: var(--button-hover-light);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.25);
+}
+
+body.dark-mode .controls button:hover, body.dark-mode #play-again:hover {
+    background-color: var(--button-hover);
+}
+
+.controls button:active, #play-again:active {
+    transform: translateY(0);
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* --- Status Message --- */
+#status-message {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: var(--status-color-light);
+    transition: color 0.3s ease;
+    min-height: 1.5em; /* Prevent layout shift when message changes */
+}
+
+body.dark-mode #status-message {
+    color: var(--status-color);
+}
+
+/* --- Game Grid --- */
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    width: 300px; /* Fixed size for grid */
+    height: 300px;
+    margin: 0 auto 30px auto;
+    border: 3px solid var(--border-color-light);
+    border-radius: 10px;
+    overflow: hidden; /* Ensures border-radius applies to cells */
+    transition: border-color 0.3s ease;
+}
+
+body.dark-mode .game-grid {
+    border-color: var(--border-color);
+}
+
+.cell {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 4em;
+    font-weight: bold;
+    cursor: pointer;
+    border: 1px solid var(--border-color-light);
+    background-color: var(--cell-bg-light);
+    transition: background-color 0.2s ease, transform 0.1s ease, color 0.2s ease;
+    box-sizing: border-box; /* Include padding and border */
+    user-select: none; /* Prevent text selection on cells */
+    -webkit-tap-highlight-color: transparent; /* Remove highlight on mobile tap */
+}
+
+body.dark-mode .cell {
+    border-color: var(--border-color);
+    background-color: var(--cell-bg);
+}
+
+.cell:hover:not(.x):not(.o) {
+    background-color: var(--cell-hover-light);
+}
+
+body.dark-mode .cell:hover:not(.x):not(.o) {
+    background-color: var(--cell-hover);
+}
+
+/* Remove internal borders for a cleaner look while maintaining grid lines */
+.cell:nth-child(3n) { border-right: none; }
+.cell:nth-child(3n + 1) { border-left: none; }
+.cell:nth-child(n + 7) { border-bottom: none; }
+.cell:nth-child(-n + 3) { border-top: none; }
+
+
+/* --- Mark Styling and Animations --- */
+.cell.x {
+    color: var(--x-color-light);
+}
+body.dark-mode .cell.x {
+    color: var(--x-color);
+}
+
+.cell.o {
+    color: var(--o-color-light);
+}
+body.dark-mode .cell.o {
+    color: var(--o-color);
+}
+
+/* Animation for placing X/O */
+.cell.animate {
+    animation: placeMark 0.3s ease-out forwards;
+}
+
+@keyframes placeMark {
+    from {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Win highlighting */
+.cell.highlight-win {
+    background-color: var(--win-highlight-light);
+    animation: winGlow 0.8s ease-in-out infinite alternate;
+}
+
+body.dark-mode .cell.highlight-win {
+    background-color: var(--win-highlight);
+}
+
+@keyframes winGlow {
+    from {
+        box-shadow: 0 0 8px var(--win-highlight-light), 0 0 15px var(--win-highlight-light);
+    }
+    to {
+        box-shadow: 0 0 20px var(--win-highlight-light), 0 0 30px var(--win-highlight-light);
+    }
+}
+
+/* Specific animation for dark mode to use dark mode highlight color */
+body.dark-mode .cell.highlight-win {
+    animation-name: winGlowDark;
+}
+
+@keyframes winGlowDark {
+    from {
+        box-shadow: 0 0 8px var(--win-highlight), 0 0 15px var(--win-highlight);
+    }
+    to {
+        box-shadow: 0 0 20px var(--win-highlight), 0 0 30px var(--win-highlight);
+    }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 600px) {
+    body {
+        padding: 15px;
+    }
+
+    .game-container {
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 95%; /* Adjust max-width for better fit */
+    }
+
+    h1 {
+        font-size: 1.8em;
+        margin-bottom: 15px;
+    }
+
+    .score-board {
+        font-size: 1em;
+        padding: 8px 0;
+    }
+
+    .controls {
+        flex-direction: column; /* Stack buttons vertically */
+        gap: 8px;
+        margin-bottom: 15px;
+    }
+
+    .controls button, #play-again {
+        width: 100%; /* Full width buttons */
+        padding: 10px;
+        font-size: 0.9em;
+    }
+
+    #status-message {
+        font-size: 1.2em;
+        margin-bottom: 20px;
+    }
+
+    .game-grid {
+        width: 280px; /* Slightly smaller grid */
+        height: 280px;
+        margin-bottom: 20px;
+    }
+
+    .cell {
+        font-size: 3.5em; /* Adjust font size for marks */
+    }
+}
+
+@media (max-width: 380px) {
+    .game-grid {
+        width: 250px;
+        height: 250px;
+    }
+    .cell {
+        font-size: 3em;
+    }
+}
